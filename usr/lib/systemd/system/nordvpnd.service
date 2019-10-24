@@ -1,0 +1,14 @@
+[Unit]
+Description=NordVPN Daemon
+Requires=nordvpnd.socket
+After=network-online.target
+
+[Service]
+ExecStart=/usr/sbin/nordvpnd
+NonBlocking=true
+KillMode=process
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=default.target

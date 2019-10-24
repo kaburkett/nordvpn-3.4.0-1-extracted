@@ -1,0 +1,8 @@
+_nordvpn_auto_complete() {
+    COMPREPLY=()
+    local cur="${COMP_WORDS[COMP_CWORD]}"
+    local opts=$(${COMP_WORDS[@]:0:$COMP_CWORD} --complete)
+    COMPREPLY=( $(printf %s\\n "${opts[@]}" | awk -v IGNORECASE=1 -v p="$cur" 'p==substr($0,0,length(p))') )
+    return 0
+}
+complete -F _nordvpn_auto_complete nordvpn
